@@ -1,16 +1,8 @@
 .container {
   display: flex;
-  .select {
-    height: 500px;
-    width: 500px;
-    background-color: yellowgreen;
-  }
-  .bubble {
-    height: 500px;
-    width: 500px;
-    background-color: yellowgreen;
-  }
-  .quick {
+  flex-wrap: wrap;
+  .sortVisualize{
+    flex-shrink: 0;
     height: 500px;
     width: 500px;
     background-color: yellowgreen;

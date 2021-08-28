@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import * as echarts from 'echarts';
-import {parseData} from './utils';
-
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +12,7 @@ export class ChartService {
     const myChart = echarts.init(<HTMLElement>document.querySelector(options.selector));
     myChart.setOption({
       title: {
-        text: options.title
+        text: options.title,
       },
       tooltip: {},
       xAxis: { data: input.map((item, index) => index + 1) },
@@ -23,9 +21,13 @@ export class ChartService {
         {
           name: '排序',
           type: 'bar',
-          data: parseData(input),
+          data: input,
         },
       ],
+      label:{
+        show:true,
+        position: 'top',
+      },
       animationDurationUpdate: 1000,
     });
     return myChart;
