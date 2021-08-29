@@ -108,21 +108,24 @@ export function multipleOrder(input: Array<number>, callback?: Function) {
   input.forEach((item) => {
     group.push([item]);
   });
-  function main(group: Array<Array<number>>):Array<number> {
+  function main(group: Array<Array<number>>): Array<number> {
     let result: Array<Array<number>> = [];
-    if(group.length <= 1) return group[0];
+    if (group.length <= 1) return group[0];
     for (let i = 0; i < group.length; i += 2) {
       let g1 = group[i];
       let g2 = group[i + 1];
-      let _group = []
-      if(!g2 && g1) {result.push(g1);break; }
+      let _group = [];
+      if (!g2 && g1) {
+        result.push(g1);
+        break;
+      }
       while (true) {
         let g1Head = g1[0];
         let g2Head = g2[0];
         if (g1Head && g2Head) {
-          if(g1Head<g2Head){
+          if (g1Head < g2Head) {
             _group.push(g1.shift());
-          }else{
+          } else {
             _group.push(g2.shift());
           }
         } else if (!g1Head && g2Head) {
@@ -133,12 +136,41 @@ export function multipleOrder(input: Array<number>, callback?: Function) {
           break;
         }
       }
-      result.push(<Array<number>>_group)
+      result.push(<Array<number>>_group);
     }
     callback && callback(result.flat());
-    return main(result)
+    return main(result);
   }
   return main(group);
 }
 
-export function stackSort(input: Array<number>, callback?: Function) {}
+export function stackSort(
+  input: Array<number>,
+  callback?: Function
+): Array<number> {
+  function heapify(input: Array<number>): Array<number> {
+    for (let i = input.length - 1; i > 0; i -= 2) {
+      let parent = Math.ceil((i - 2) / 2);
+      let leftChild = 2 * parent + 1;
+      let rightChild = 2 * parent + 2;
+      if (input[leftChild] && input[leftChild] < input[parent]) {
+        [input[leftChild], input[parent]] = [input[parent], input[leftChild]];
+      }
+      if (input[rightChild] && input[rightChild] < input[parent]) {
+        [input[rightChild], input[parent]] = [input[parent], input[rightChild]];
+      }
+    }
+    return input;
+  }
+  let heap = input.map((item) => item);
+  let result: Array<number> = [];
+  while (true) {
+    heap = heapify(heap);
+    if (heap.length <= 0) {
+      return result;
+    } else {
+      result.push(<number>heap.shift());
+      callback && callback(result);
+    }
+  }
+}

@@ -18,5 +18,6 @@ export class SortComponent implements OnInit {
     this.sortService.addInsertOrder([23, 10, 34, 31, 6, 59, 30, 20, 9, 63, 40, 39, 43, 6], {title: '插入排序',selector:".insert"})
     this.sortService.addHillSort([23, 10, 34, 31, 6, 59, 30, 20, 9, 63, 40, 39, 43, 6], {title: '希尔排序',selector:".hill"})
     this.sortService.addMultipleOrder([23, 10, 34, 31, 6, 59, 30, 20, 9, 63, 40, 39, 43, 6], {title: '归并排序',selector:".multiple"})
+    this.sortService.addStackSort([23, 10, 34, 31, 6, 59, 30, 20, 9, 63, 40, 39, 43, 6], {title: '堆排序',selector:".heap"})
   }
 }
