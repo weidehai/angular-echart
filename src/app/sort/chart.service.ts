@@ -8,7 +8,7 @@ export class ChartService {
 
   constructor() { }
 
-  bar(input: Array<number>,options:{title: string,selector:string}) {
+  bar<T>(input: Array<T>,options:{title: string,selector:string}) {
     const myChart = echarts.init(<HTMLElement>document.querySelector(options.selector));
     myChart.setOption({
       title: {

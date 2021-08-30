@@ -1,4 +1,4 @@
-export function selectSort(input: Array<number>, callback?: Function) {
+function selectSort<T>(input: Array<T>, callback?: Function) {
   for (var i = 0; i < input.length; i++) {
     for (var j = i + 1; j < input.length; j++) {
       if (input[i] > input[j]) {
@@ -10,7 +10,7 @@ export function selectSort(input: Array<number>, callback?: Function) {
   return input;
 }
 
-export function bubbleSort(input: Array<number>, callback?: Function) {
+function bubbleSort<T>(input: Array<T>, callback?: Function) {
   for (var i = 0; i < input.length; i++) {
     for (var j = 0; j < input.length; j++) {
       if (input[j] > input[j + 1]) {
@@ -22,7 +22,7 @@ export function bubbleSort(input: Array<number>, callback?: Function) {
   return input;
 }
 
-export function quickSort(input: Array<number>, callback?: Function) {
+function quickSort<T>(input: Array<T>, callback?: Function) {
   function getIndex(low: number, high: number) {
     let base = input[low];
     while (low < high) {
@@ -53,7 +53,7 @@ export function quickSort(input: Array<number>, callback?: Function) {
   return main(0, input.length - 1);
 }
 
-export function insertOrder(input: Array<number>, callback?: Function) {
+function insertOrder<T>(input: Array<T>, callback?: Function) {
   for (let i = 1; i < input.length; i++) {
     for (let j = i; j > 0; j--) {
       if (input[j] < input[j - 1]) {
@@ -67,11 +67,12 @@ export function insertOrder(input: Array<number>, callback?: Function) {
   return input;
 }
 
-export function hillSort(
-  input: Array<number>,
-  step: number,
-  callback?: Function
+function hillSort<T>(
+  input: Array<T>,
+  callback?: Function,
+  step?: number,
 ) {
+  step = step || 4
   let group = Math.floor(input.length / step);
   let tail = input.length % step;
   for (let i = 0; i < group; i++) {
@@ -99,17 +100,17 @@ export function hillSort(
     }
   }
   if (group === 0) return input;
-  hillSort(input, step * 2, callback);
+  hillSort(input, callback, step * 2);
   return input;
 }
 
-export function multipleOrder(input: Array<number>, callback?: Function) {
-  let group: Array<Array<number>> = [];
+function multipleOrder<T>(input: Array<T>, callback?: Function) {
+  let group: Array<Array<T>> = [];
   input.forEach((item) => {
     group.push([item]);
   });
-  function main(group: Array<Array<number>>): Array<number> {
-    let result: Array<Array<number>> = [];
+  function main(group: Array<Array<T>>): Array<T> {
+    let result: Array<Array<T>> = [];
     if (group.length <= 1) return group[0];
     for (let i = 0; i < group.length; i += 2) {
       let g1 = group[i];
@@ -136,7 +137,7 @@ export function multipleOrder(input: Array<number>, callback?: Function) {
           break;
         }
       }
-      result.push(<Array<number>>_group);
+      result.push(<Array<T>>_group);
     }
     callback && callback(result.flat());
     return main(result);
@@ -144,11 +145,8 @@ export function multipleOrder(input: Array<number>, callback?: Function) {
   return main(group);
 }
 
-export function stackSort(
-  input: Array<number>,
-  callback?: Function
-): Array<number> {
-  function heapify(input: Array<number>): Array<number> {
+function stackSort<T>(input: Array<T>, callback?: Function) {
+  function heapify(input: Array<T>) {
     for (let i = input.length - 1; i > 0; i -= 2) {
       let parent = Math.ceil((i - 2) / 2);
       let leftChild = 2 * parent + 1;
@@ -163,14 +161,27 @@ export function stackSort(
     return input;
   }
   let heap = input.map((item) => item);
-  let result: Array<number> = [];
+  let result: Array<T> = [];
   while (true) {
     heap = heapify(heap);
     if (heap.length <= 0) {
       return result;
     } else {
-      result.push(<number>heap.shift());
+      result.push(<T>heap.shift());
       callback && callback(result);
     }
   }
 }
+
+type Sort = {[prop:string]:Function}
+const sort:Sort = {
+  selectSort,
+  bubbleSort,
+  quickSort,
+  insertOrder,
+  hillSort,
+  multipleOrder,
+  stackSort,
+}
+
+export default sort
