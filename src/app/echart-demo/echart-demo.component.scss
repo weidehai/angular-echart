@@ -1,26 +1,30 @@
-.container{
+.container {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   flex-wrap: wrap;
-  .main{
-    height:500px;
+  .main {
+    height: 500px;
     width: 500px;
     background-color: yellowgreen;
   }
-  .nantuta{
-    height:500px;
+  .nantuta {
+    height: 500px;
     width: 500px;
     background-color: yellowgreen;
   }
-  .data-zoom{
-    height:500px;
+  .data-zoom {
+    height: 500px;
     width: 500px;
     background-color: rgb(45, 46, 42);
   }
-  .data-zoom1{
-    height:500px;
-    width: 500px;
-    background-color: rgb(45, 46, 42);
+  .container2 {
+    display: flex;
+    width:100vw;
+    justify-content: center;
+    margin-top: 50px;
+    .pictrue {
+      height: 800px;
+      width: 1200px;
+    }
   }
 }
-
