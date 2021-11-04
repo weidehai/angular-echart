@@ -320,75 +320,64 @@ function pic1() {
           'path://M27.310007,2.749997l22.5,0c-2.485281,0 -4.5,14.326891 -4.5,32.000002c0,17.673113 2.014718,32 4.5,32l-22.5,0l0,0c-2.485281,0 -4.5,-14.326889 -4.5,-32c0,-17.673111 2.014718,-32.000002 4.5,-32.000002z M12.75,70.184998l47,0l-11,10l-30,-1l-6,-9z',
       },
       {
-        //birds
         type: 'graph',
+        width:100,
+        height:50,
+        left: 700,
+        top: 440,
         data: [
-          //bg
           {
             symbolSize: 0,
-            x: 0,
-            y: 0,
-          },
-          {
-            symbolSize: 0,
-            x: 200,
+            x: 100,
             y: 100,
-          },
-          //bird1
-          {
-            symbolSize: 0,
-            x: 120,
-            y: 50,
             name: 'first-bird-left',
           },
           {
-            symbolSize: 3,
-            x: 125,
-            y: 52,
+            symbolSize: 2,
+            x: 110,
+            y: 103,
             name: 'first-bird',
           },
           {
             symbolSize: 0,
-            x: 130,
-            y: 50,
+            x: 120,
+            y: 100,
             name: 'first-bird-right',
           },
-          //bird2
           {
             symbolSize: 0,
-            x: 110,
-            y: 43,
+            x: 123,
+            y: 104,
             name: 'second-bird-left',
           },
           {
             symbolSize: 2,
-            x: 115,
-            y: 45,
+            x: 133,
+            y: 108,
             name: 'second-bird',
           },
           {
             symbolSize: 0,
-            x: 120,
-            y: 43,
+            x: 143,
+            y: 104,
             name: 'second-bird-right',
           },
-          //bird3
           {
             symbolSize: 0,
-            x: 112,
-            y: 52,
+            x: 107,
+            y: 110,
             name: 'third-bird-left',
           },
           {
             symbolSize: 2,
-            x: 115,
-            y: 53,
+            x: 114,
+            y: 112,
             name: 'third-bird',
           },
           {
             symbolSize: 0,
-            x: 118,
-            y: 52,
+            x: 121,
+            y: 110,
             name: 'third-bird-right',
           },
         ],
@@ -433,6 +422,63 @@ function pic1() {
   });
 }
 
+function graph() {
+  const myChart = echarts.init(<HTMLElement>document.querySelector('.graph'));
+  myChart.setOption({
+    series: [
+      {
+        type: 'graph',
+        layout: 'none',
+        symbolSize: 10,
+        data: [
+          {
+            name: '1',
+            x: 0,
+            y: 0,
+            value: 10,
+          },
+          {
+            name: '2',
+            x: 20,
+            y: 10,
+            value: 20,
+            itemStyle: {
+              color: 'red',
+            },
+          },
+          {
+            name: '3',
+            x: 40,
+            y: 0,
+            value: 20,
+            itemStyle: {
+              color: 'red',
+            },
+          },
+          {
+            name: '4',
+            x: 10,
+            y: 15,
+            value: 20,
+            itemStyle: {
+              color: 'red',
+            },
+          },
+          {
+            name: '5',
+            x: 30,
+            y: 20,
+            value: 20,
+            itemStyle: {
+              color: 'red',
+            },
+          },
+        ],
+      },
+    ],
+  });
+}
+
 @Component({
   selector: 'app-echart-demo',
   templateUrl: './echart-demo.component.html',
@@ -445,5 +491,6 @@ export class EchartDemoComponent implements OnInit {
     nantuta();
     dataZoom();
     pic1();
+    graph();
   }
 }

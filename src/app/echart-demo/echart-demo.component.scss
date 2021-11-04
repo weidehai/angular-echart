@@ -22,9 +22,15 @@
     width:100vw;
     justify-content: center;
     margin-top: 50px;
+    margin-bottom: 50px;
     .pictrue {
       height: 800px;
       width: 1200px;
     }
+  }
+  .graph{
+    height: 500px;
+    width: 500px;
+    background:rgb(229, 255, 0);
   }
 }
